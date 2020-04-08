@@ -1,0 +1,20 @@
+Singleton:
+	-stocuri
+
+Decorator:
+	-tratament
+
+Mediator:
+	-verificarea programarilor
+
+Proxy:
+	-angajatii spitalului trebuie sa furnizeze o parola pentru a accesa aplicatia
+
+Flyweight:
+	-pentru plata dupa tratamentul unui pacient
+
+Brige:
+	-alege unde sa face programarea
+
+
+
