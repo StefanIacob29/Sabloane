@@ -1,4 +1,5 @@
 ﻿using System;
+using HotelManagement.Services;
 
 namespace HotelManagement
 {
@@ -6,7 +7,21 @@ namespace HotelManagement
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            EmployeeProxy employeeProxy = new EmployeeProxy();
+            Console.WriteLine("Please enter the username and password to access the system: ");
+            string username = Console.ReadLine();
+            string password = Console.ReadLine();
+
+            if (employeeProxy.Login(username, password))
+            {
+                Stock stock = Stock.GetStock();
+                Console.WriteLine(stock.ShowPillStock());
+            }
+            else
+            {
+                Console.WriteLine("The username or password is not correct");
+            }
+            
         }
     }
 }
