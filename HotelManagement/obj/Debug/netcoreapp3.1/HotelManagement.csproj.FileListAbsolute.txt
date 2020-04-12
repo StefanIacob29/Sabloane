@@ -9,3 +9,16 @@ C:\Facultate anul 3\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManage
 C:\Facultate anul 3\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.pdb
 C:\Facultate anul 3\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.dll
 C:\Facultate anul 3\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.pdb
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.exe
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.deps.json
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.runtimeconfig.json
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.runtimeconfig.dev.json
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.dll
+D:\Facultate\Sabloane\Sabloane\HotelManagement\bin\Debug\netcoreapp3.1\HotelManagement.pdb
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.csprojAssemblyReference.cache
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.csproj.CoreCompileInputs.cache
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.AssemblyInfoInputs.cache
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.AssemblyInfo.cs
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.dll
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.pdb
+D:\Facultate\Sabloane\Sabloane\HotelManagement\obj\Debug\netcoreapp3.1\HotelManagement.genruntimeconfig.cache
