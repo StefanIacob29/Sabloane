@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HotelManagement.csproj": {}
+    "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj": {}
   },
   "projects": {
-    "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HotelManagement.csproj": {
+    "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HotelManagement.csproj",
+        "projectUniqueName": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj",
         "projectName": "HotelManagement",
-        "projectPath": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HotelManagement.csproj",
-        "packagesPath": "C:\\Users\\silvi\\.nuget\\packages\\",
-        "outputPath": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\obj\\",
+        "projectPath": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj",
+        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
+        "outputPath": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\silvi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

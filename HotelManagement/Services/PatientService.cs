@@ -15,7 +15,8 @@ namespace HotelManagement.Services
             Patients.Add(new Patient(name, id));
             return id;
         }
-        public Patient getPatient(int id)
+
+        public Patient GetPatient(int id)
         {
             foreach(var it in Patients)
             {

@@ -5,14 +5,14 @@ namespace HotelManagement
 {
     class Program
     {
-        static PatientService patientService = new PatientService();
-        static void meniuLogedClient(int id)
+        private static readonly PatientService PatientService = new PatientService();
+        static void LoggedClientMenu(int id)
         {
-            Patient patient = patientService.getPatient(id);
+            Patient patient = PatientService.GetPatient(id);
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("--------------Client Meniu--------------");
+                Console.WriteLine("--------------Client Menu--------------");
                 Console.WriteLine("Welcome " + patient.Name + " your access code is " + id.ToString());
                 Console.WriteLine("1.Make appointment");
                 Console.WriteLine("2.See Treatment");
@@ -42,12 +42,12 @@ namespace HotelManagement
             }
 
         }
-        static void meniuClient()
+        public static void ClientMenu()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("--------------Client Meniu--------------");
+                Console.WriteLine("--------------Client Menu--------------");
                 Console.WriteLine("1.Login");
                 Console.WriteLine("2.New Client");
                 Console.WriteLine("0.Back");
@@ -59,8 +59,8 @@ namespace HotelManagement
                             Console.Clear();
                             Console.WriteLine("Enter your access code");
                             int id = Convert.ToInt32(Console.ReadLine());
-                            if (patientService.getPatient(id) != null)
-                                meniuLogedClient(id);
+                            if (PatientService.GetPatient(id) != null)
+                                LoggedClientMenu(id);
                             break;
                         }
                     case 2:
@@ -68,7 +68,7 @@ namespace HotelManagement
                             Console.Clear();
                             Console.WriteLine("Enter your name: ");
                             string name = Console.ReadLine();
-                            meniuLogedClient(patientService.AddPatient(name));
+                            LoggedClientMenu(PatientService.AddPatient(name));
                             break;
                         }
                 }
@@ -76,11 +76,11 @@ namespace HotelManagement
                     break;
             }
         }
-        static void meniuEmployee()
+        private static void EmployeeMenu()
         {
             EmployeeProxy employeeProxy = new EmployeeProxy();
             Console.Clear();
-            Console.WriteLine("--------------Employee Meniu--------------");
+            Console.WriteLine("--------------Employee Menu--------------");
             Console.WriteLine("Username: ");
             string username = Console.ReadLine();
             Console.WriteLine("Password: ");
@@ -95,6 +95,7 @@ namespace HotelManagement
                 Console.WriteLine("The username or password is not correct");
             }
         }
+
         static void Main(string[] args)
         {
             while (true)
@@ -108,10 +109,13 @@ namespace HotelManagement
                 switch (op)
                 {
                     case 1:
-                        meniuEmployee();break;
+                        EmployeeMenu();
+                        break;
                     case 2:
-                        meniuClient(); break;
+                        ClientMenu();
+                        break;
                 }
+
                 if (op == 0)
                     break;
             }   
