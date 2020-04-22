@@ -1,21 +1,18 @@
-﻿using System.Data;
-using System.Linq;
-using HotelManagement.Models;
+﻿using System.Linq;
 
-namespace HotelManagement.Services
+namespace HospitalManagement.Services
 {
-    public class EmployeeProxy
+    public class DoctorProxy
     {
-        private EmployeeService employeeService = new EmployeeService();
+        private readonly DoctorService _doctorService = new DoctorService();
 
         public bool Login(string username, string password)
         {
-            var user = employeeService.Employees
+            var user = _doctorService.Employees
                 .Select(employee => employee)
                 .FirstOrDefault(employee => employee.Name == username && employee.Password == password);
 
             return user != null;
         }
-
     }
 }

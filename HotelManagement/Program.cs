@@ -1,7 +1,8 @@
 ﻿using System;
-using HotelManagement.Services;
-using HotelManagement.Models;
-namespace HotelManagement
+using HospitalManagement.Models;
+using HospitalManagement.Services;
+
+namespace HospitalManagement
 {
     class Program
     {
@@ -78,14 +79,14 @@ namespace HotelManagement
         }
         private static void EmployeeMenu()
         {
-            EmployeeProxy employeeProxy = new EmployeeProxy();
+            DoctorProxy doctorProxy = new DoctorProxy();
             Console.Clear();
-            Console.WriteLine("--------------Employee Menu--------------");
+            Console.WriteLine("--------------Doctor Menu--------------");
             Console.WriteLine("Username: ");
             string username = Console.ReadLine();
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
-            if (employeeProxy.Login(username, password))
+            if (doctorProxy.Login(username, password))
             {
                 Stock stock = Stock.GetStock();
                 Console.WriteLine(stock.ShowPillStock());
@@ -102,7 +103,7 @@ namespace HotelManagement
             {
                 Console.Clear();
                 Console.WriteLine("Please choose an option");
-                Console.WriteLine("1.Employee");
+                Console.WriteLine("1.Doctor");
                 Console.WriteLine("2.Client");
                 Console.WriteLine("0.Exit");
                 int op= Convert.ToInt32( Console.ReadLine());

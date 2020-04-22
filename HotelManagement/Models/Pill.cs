@@ -1,4 +1,4 @@
-﻿namespace HotelManagement.Models
+﻿namespace HospitalManagement.Models
 {
     public class Pill
     {

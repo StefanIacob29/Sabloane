@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using HotelManagement.Models;
+using HospitalManagement.Models;
 
-namespace HotelManagement.Services
+namespace HospitalManagement.Services
 {
     public class Stock
     {

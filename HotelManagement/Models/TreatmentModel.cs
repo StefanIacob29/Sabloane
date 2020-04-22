@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HotelManagement.Models
+namespace HospitalManagement.Models
 {
     public class TreatmentModel
     {

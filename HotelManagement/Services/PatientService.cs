@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using HotelManagement.Models;
+﻿using System.Collections.Generic;
+using HospitalManagement.Models;
 
-namespace HotelManagement.Services
+namespace HospitalManagement.Services
 {
     class PatientService
     {

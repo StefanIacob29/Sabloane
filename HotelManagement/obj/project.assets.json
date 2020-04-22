@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj",
-      "projectName": "HotelManagement",
-      "projectPath": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HotelManagement.csproj",
+      "projectUniqueName": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
+      "projectName": "HospitalManagement",
+      "projectPath": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
       "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
       "outputPath": "C:\\Facultate anul 3\\Sabloane\\HotelManagement\\obj\\",
       "projectStyle": "PackageReference",
