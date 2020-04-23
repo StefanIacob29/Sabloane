@@ -6,5 +6,9 @@ namespace HospitalManagement.Models
     {
         public string TreatmentName { get; set; }
         public List<Pill> Pills { get; set; }
+        public TreatmentModel()
+        {
+            Pills = new List<Pill>();
+        }
     }
 }

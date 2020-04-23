@@ -14,6 +14,7 @@
         {
             this.Name = name;
             this.Id = id;
+            Treatment = new TreatmentModel();
         }
     }
 }

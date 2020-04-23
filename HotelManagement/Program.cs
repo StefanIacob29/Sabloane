@@ -62,12 +62,38 @@ namespace HospitalManagement
                             hour = new DateTime(2008, 4, 1, 9, 0, 0);
                             hour=hour.AddMinutes(30 * (op4 - 1));
                             DateTime appoiment = new DateTime(now.Year, now.Month, now.Day, hour.Hour, hour.Minute,0,0);
-                            departamentService.makeAppointment(patient, appoiment, doctorService.getDoctorByDepartment(departments[op2-1]));
+                            Doctor doc=departamentService.makeAppointment(patient, appoiment, doctorService.getDoctorByDepartment(departments[op2-1]));
+                            if (doc != null)
+                            {
+                                doctorService.updateDoctor(doc);
+                                Console.Clear();
+                                Console.WriteLine("Programarea a fost realizata");
+                                Console.WriteLine("Press any key to continue");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Programarea nu a fost realizata, exista o programare la acea data si ora");
+                                Console.WriteLine("Press any key to continue");
+                                Console.ReadLine();
+                            }
+                                
                             break;
                         }
                     case 2:
                         {
-                            Console.WriteLine("See Treatment");
+                            Console.Clear();
+                            if (patient.Treatment.Pills.Count > 0)
+                            {
+                                Console.WriteLine("Tratamentul Dvs. este urmatorul");
+                                foreach (var trat in patient.Treatment.Pills)
+                                    Console.WriteLine("Nume pastila: " + trat.Name + " Cantitate: " + trat.Quantity + " Pret: " + trat.Price);
+                            }
+                            else
+                                Console.WriteLine("Nu aveti momentan un tratament atribuit");
+                            Console.WriteLine("Press any key to continue");
+                            Console.ReadLine();
                             break;
                         }
                     case 3:

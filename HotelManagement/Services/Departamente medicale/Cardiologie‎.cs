@@ -7,9 +7,23 @@ namespace HospitalManagement.Services.Departamente_medicale
 {
     class Cardiologie‎:Departament
     {
+        private Doctor doctor;
+
+        public Cardiologie(Doctor doctor)
+        {
+            this.doctor = doctor;
+        }
+
         public Doctor makeAppointment(Patient Client, DateTime date)
         {
-            throw new NotImplementedException();
+            foreach (var app in doctor.appointments)
+            {
+                if (app.Date == date)
+                    return null;
+
+            }
+            doctor.appointments.Add(new Appointment(Client, date));
+            return doctor;
         }
     }
 }
