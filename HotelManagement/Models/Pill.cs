@@ -2,10 +2,11 @@
 {
     public class Pill
     {
-        public Pill(string pillName, int v)
+        public Pill(string pillName,int quantity, int price)
         {
             this.Name = pillName;
-            this.Price= v;
+            this.Quantity = quantity;
+            this.Price= price;
         }
 
         public string Name { get; set; }

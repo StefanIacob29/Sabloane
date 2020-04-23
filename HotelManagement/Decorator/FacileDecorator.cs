@@ -16,7 +16,7 @@ namespace HospitalManagement.Decorator
         }
         public override void AddPill(string pillName,int price)
         {
-            this.DecoratedTreatment.Pills.Add(new Pill(pillName,1));
+            this.DecoratedTreatment.Pills.Add(new Pill(pillName,1,price));
             this.DecoratedTreatment.Price += price;
         }
     }

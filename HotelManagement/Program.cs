@@ -137,8 +137,10 @@ namespace HospitalManagement
                 Console.WriteLine(stock.ShowPillStock());
 
                 Console.WriteLine(" Which pill u want to add");
+                Console.WriteLine("Write -1 if u want to get out");
 
                 int option2 = Convert.ToInt32(Console.ReadLine());
+                if (option2 == -1) break;
                 var selectedPill = stock.Pills[option2];
                 //patient.Treatment.Pills.Add(selectedPill);
                 ITreatment itreat=new TreatmentModel();
