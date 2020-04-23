@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
+      "projectUniqueName": "D:\\Facultate\\Sabloane\\SabloaneGit\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
       "projectName": "HospitalManagement",
-      "projectPath": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
+      "projectPath": "D:\\Facultate\\Sabloane\\SabloaneGit\\Sabloane\\HotelManagement\\HospitalManagement.csproj",
       "packagesPath": "C:\\Users\\silvi\\.nuget\\packages\\",
-      "outputPath": "D:\\Facultate\\Sabloane\\Sabloane\\HotelManagement\\obj\\",
+      "outputPath": "D:\\Facultate\\Sabloane\\SabloaneGit\\Sabloane\\HotelManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

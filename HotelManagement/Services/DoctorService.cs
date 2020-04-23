@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HospitalManagement.Models;
 
 namespace HospitalManagement.Services
@@ -61,7 +62,7 @@ namespace HospitalManagement.Services
         {
             foreach(var doc in Employees)
             {
-                if (doc.Role == department)
+                if (String.Equals(doc.Role, department, StringComparison.InvariantCultureIgnoreCase))
                     return doc;
             }
             return null;

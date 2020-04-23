@@ -11,7 +11,7 @@ namespace HospitalManagement
         private static DepartamentService departamentService = new DepartamentService();
         private static DoctorService doctorService = new DoctorService();
         private static PatientService PatientService = new PatientService();
-        private static List<string> departments=new List<string>() { "urologie", "stomatologie", "ortopedie", "oftalmologie", "chirurgie", "cardiologie" };
+        private static List<string> departments=new List<string>() { "urologie","stomatologie","ortopedie","oftalmologie","chirurgie","cardiologie" };
         static void LoggedClientMenu(int id)
         {
             Patient patient = PatientService.GetPatient(id);
