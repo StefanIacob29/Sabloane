@@ -2,6 +2,15 @@
 {
     public class Pill
     {
+        private string pillName;
+        private int v;
+
+        public Pill(string pillName, int v)
+        {
+            this.pillName = pillName;
+            this.v = v;
+        }
+
         public string Name { get; set; }
 
         public string Quantity { get; set; }

@@ -15,16 +15,12 @@ namespace HospitalManagement.Services
 
         public List<Pill> Pills { get; set; } = new List<Pill>
         {
-            new Pill
+            new Pill("Paracetamol",100)
             {
-                Name = "Paracetamol",
-                Price = 100,
                 Quantity = "100"
             },
-            new Pill
+            new Pill("Ibuprofen",200)
             {
-                Name = "Ibuprofen",
-                Price = 200,
                 Quantity = "150"
             }
         };

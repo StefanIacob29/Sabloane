@@ -1,4 +1,6 @@
-﻿namespace HospitalManagement.Models
+﻿using HospitalManagement.Decorator;
+
+namespace HospitalManagement.Models
 {
     public class Patient
     {
@@ -6,7 +8,7 @@
 
         public int Id { get; set; }
 
-        public TreatmentModel Treatment { get; set; }
+        public ITreatment Treatment { get; set; }
 
         public Appointment Appointment { get; set; }
 

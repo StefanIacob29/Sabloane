@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.Decorator;
+using System;
 
 namespace HospitalManagement.Models
 {
@@ -8,6 +9,9 @@ namespace HospitalManagement.Models
         public Appointment(Patient client, DateTime date)
         {
             this.Patient = client;
+
+            ITreatment treatment = new TreatmentModel();
+            this.Patient.Treatment = treatment;
             this.Date = date;
         }
 
