@@ -10,13 +10,17 @@ namespace HospitalManagement.Models
 
         public ITreatment Treatment { get; set; }
 
-        public Appointment Appointment { get; set; }
+        public string Appointment { get; set; }
 
         public Patient(string name,int id)
         {
             this.Name = name;
             this.Id = id;
             Treatment = new TreatmentModel();
+        }
+        public void updateAppoinment(string date)
+        {
+            this.Appointment = date;
         }
     }
 }

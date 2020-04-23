@@ -11,23 +11,29 @@ namespace HospitalManagement
         private static DepartamentService departamentService = new DepartamentService();
         private static DoctorService doctorService = new DoctorService();
         private static PatientService PatientService = new PatientService();
+        private static Observer observable = new Observer();
         private static List<string> departments=new List<string>() { "urologie","stomatologie","ortopedie","oftalmologie","chirurgie","cardiologie" };
         static void LoggedClientMenu(int id)
         {
             Patient patient = PatientService.GetPatient(id);
+            observable.addObserver(patient);
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("--------------Client Menu--------------");
                 Console.WriteLine("Welcome " + patient.Name + " your access code is " + id.ToString());
-                Console.WriteLine("1.Make appointment");
-                Console.WriteLine("2.See Treatment");
-                Console.WriteLine("3.Pay");
+                if (patient.Appointment != null)
+                    Console.WriteLine(patient.Appointment);
+                Console.WriteLine();
+                Console.WriteLine("1.See Treatment");
+                Console.WriteLine("2.Pay");
+                if(patient.Appointment==null)
+                    Console.WriteLine("3.Make appointment");
                 Console.WriteLine("0.Logout");
                 int op = Convert.ToInt32(Console.ReadLine());
                 switch (op)
                 {
-                    case 1:
+                    case 3:
                         {
                             int ct = 1;
                             Console.Clear();
@@ -65,6 +71,7 @@ namespace HospitalManagement
                             Doctor doc=departamentService.makeAppointment(patient, appoiment, doctorService.getDoctorByDepartment(departments[op2-1]));
                             if (doc != null)
                             {
+                                observable.setDate(appoiment, departments[op2 - 1]);
                                 doctorService.updateDoctor(doc);
                                 Console.Clear();
                                 Console.WriteLine("Programarea a fost realizata");
@@ -81,7 +88,7 @@ namespace HospitalManagement
                                 
                             break;
                         }
-                    case 2:
+                    case 1:
                         {
                             Console.Clear();
                             if (patient.Treatment.Pills.Count > 0)
@@ -96,7 +103,7 @@ namespace HospitalManagement
                             Console.ReadLine();
                             break;
                         }
-                    case 3:
+                    case 2:
                         {
                             Console.WriteLine("Pay");
                             break;
