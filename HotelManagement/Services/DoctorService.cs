@@ -9,9 +9,39 @@ namespace HospitalManagement.Services
         {
             new Doctor()
             {
-                Name = "admin",
-                Password = "admin",
-                Role = "surgeon"
+                Name = "urologie",
+                Password = "urologie",
+                Role = "urologie"
+            },
+            new Doctor()
+            {
+                Name = "stomatologie‎",
+                Password = "stomatologie‎",
+                Role = "stomatologie‎"
+            },
+            new Doctor()
+            {
+                Name = "ortopedie‎",
+                Password = "ortopedie‎",
+                Role = "ortopedie‎"
+            },
+            new Doctor()
+            {
+                Name = "oftalmologie‎",
+                Password = "oftalmologie‎",
+                Role = "oftalmologie‎"
+            },
+            new Doctor()
+            {
+                Name = "chirurgie‎",
+                Password = "chirurgie‎",
+                Role = "chirurgie‎"
+            },
+            new Doctor()
+            {
+                Name = "cardiologie‎‎",
+                Password = "cardiologie‎",
+                Role = "cardiologie‎"
             }
         };
 
@@ -19,7 +49,32 @@ namespace HospitalManagement.Services
         {
             Employees.Add(doctor);
         }
-
+        public void updateDoctor(Doctor doc)
+        {
+            for(var i = 0; i < Employees.Count; i++)
+            {
+                if (Employees[i].Role == doc.Role)
+                    Employees[i] = doc;
+            }
+        }
+        public Doctor getDoctorByDepartment(string department)
+        {
+            foreach(var doc in Employees)
+            {
+                if (doc.Role == department)
+                    return doc;
+            }
+            return null;
+        }
+        public List<string> getDepartmenst()
+        {
+            List<string> departament = new List<string>();
+            foreach(var doc in Employees)
+            {
+                departament.Add(doc.Role);
+            }
+            return departament;
+        }
         public void RemoveEmployee(Doctor doctor)
         {
             if (Employees.Contains(doctor))

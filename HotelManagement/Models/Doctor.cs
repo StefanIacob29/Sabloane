@@ -1,4 +1,6 @@
-﻿namespace HospitalManagement.Models
+﻿using System.Collections.Generic;
+
+namespace HospitalManagement.Models
 {
     public class Doctor
     {
@@ -7,6 +9,8 @@
         public string Password { get; set; }
 
         public string Role { get; set; }
+
+        public List<Appointment> appointments = new List<Appointment>();
 
         public override bool Equals(object obj)
         {

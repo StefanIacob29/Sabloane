@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using HospitalManagement.Models;
 using HospitalManagement.Services;
 
@@ -6,7 +7,11 @@ namespace HospitalManagement
 {
     class Program
     {
-        private static readonly PatientService PatientService = new PatientService();
+        private static DoctorProxy doctorProxy = new DoctorProxy();
+        private static DepartamentService departamentService = new DepartamentService();
+        private static DoctorService doctorService = new DoctorService();
+        private static PatientService PatientService = new PatientService();
+        private static List<string> departments=new List<string>() { "urologie", "stomatologie", "ortopedie", "oftalmologie", "chirurgie", "cardiologie" };
         static void LoggedClientMenu(int id)
         {
             Patient patient = PatientService.GetPatient(id);
@@ -24,7 +29,40 @@ namespace HospitalManagement
                 {
                     case 1:
                         {
-                            Console.WriteLine("Make appointment");
+                            int ct = 1;
+                            Console.Clear();
+                            Console.WriteLine("Alege departamentul la care vrei sa faci o programare");
+                            foreach (var dep in departments)
+                            {
+                                Console.WriteLine(ct + "." + dep);
+                                ct++;
+                            }
+                            int op2 = Convert.ToInt32(Console.ReadLine());
+                            Console.Clear();
+                            DateTime now = DateTime.Now;
+                            string[] months = {"January", "February", "March", "April", "May",
+                             "June", "July", "September", "October", "November", "December"};
+                            Console.WriteLine("Alege data la care vrei sa faci programarea");
+                            for(int i=1;i<=5;i++)
+                            {
+                                now = now.AddDays(1);
+                                Console.WriteLine(i + "." + now.Day+" "+ months[now.Month - 1]);
+                            }
+                            int op3 = Convert.ToInt32(Console.ReadLine());
+                            Console.Clear();
+                            DateTime hour = new DateTime(2008, 4, 1, 9, 0, 0);
+                            for (int i = 1; i <= 13; i++)
+                            {
+                                Console.WriteLine(i + "." + hour.ToString("HH:mm"));
+                                hour=hour.AddMinutes(30);
+                            }
+                            int op4 = Convert.ToInt32(Console.ReadLine());
+                            now = DateTime.Now;
+                            now =now.AddDays(op3);
+                            hour = new DateTime(2008, 4, 1, 9, 0, 0);
+                            hour=hour.AddMinutes(30 * (op4 - 1));
+                            DateTime appoiment = new DateTime(now.Year, now.Month, now.Day, hour.Hour, hour.Minute,0,0);
+                            departamentService.makeAppointment(patient, appoiment, doctorService.getDoctorByDepartment(departments[op2-1]));
                             break;
                         }
                     case 2:
@@ -79,7 +117,7 @@ namespace HospitalManagement
         }
         private static void EmployeeMenu()
         {
-            DoctorProxy doctorProxy = new DoctorProxy();
+            
             Console.Clear();
             Console.WriteLine("--------------Doctor Menu--------------");
             Console.WriteLine("Username: ");
