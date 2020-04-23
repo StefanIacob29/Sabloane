@@ -22,5 +22,11 @@ namespace HospitalManagement.Models
         {
             this.Appointment = date;
         }
+
+        public override string ToString()
+        {
+            return $"{this.Id}{this.Name} ";
+        }
+
     }
 }

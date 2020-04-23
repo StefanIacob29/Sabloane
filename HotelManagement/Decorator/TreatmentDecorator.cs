@@ -9,8 +9,8 @@ namespace HospitalManagement.Decorator
     {
         protected ITreatment DecoratedTreatment { get; set; }
         public ETreatmentType TreatmentType { get; set; }
-        public int Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Pill> Pills { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Price { get; set; }
+        public List<Pill> Pills { get; set; }
 
         public TreatmentDecorator(ITreatment myTreatment)
         {

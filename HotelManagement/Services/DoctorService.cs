@@ -43,6 +43,12 @@ namespace HospitalManagement.Services
                 Name = "cardiologie‎‎",
                 Password = "cardiologie‎",
                 Role = "cardiologie‎"
+            },
+             new Doctor()
+            {
+                Name = "test‎‎",
+                Password = "test‎",
+                Role = "test‎"
             }
         };
 

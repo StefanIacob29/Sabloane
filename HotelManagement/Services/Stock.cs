@@ -17,11 +17,11 @@ namespace HospitalManagement.Services
         {
             new Pill("Paracetamol",100)
             {
-                Quantity = "100"
+                Quantity = 100
             },
             new Pill("Ibuprofen",200)
             {
-                Quantity = "150"
+                Quantity = 150
             }
         };
 
@@ -50,9 +50,9 @@ namespace HospitalManagement.Services
         public string ShowPillStock()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (var pill in Pills)
+            for (int pill=0;pill<Pills.Count;pill++)
             {
-                builder.Append(pill);
+                builder.Append(pill.ToString()+". "+Pills[pill]+"\n");
             }
 
             return builder.ToString();

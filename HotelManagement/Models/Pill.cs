@@ -2,18 +2,15 @@
 {
     public class Pill
     {
-        private string pillName;
-        private int v;
-
         public Pill(string pillName, int v)
         {
-            this.pillName = pillName;
-            this.v = v;
+            this.Name = pillName;
+            this.Price= v;
         }
 
         public string Name { get; set; }
 
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public double Price { get; set; }
 

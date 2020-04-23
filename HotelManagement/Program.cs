@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using HospitalManagement.Decorator;
 using HospitalManagement.Models;
 using HospitalManagement.Services;
 
@@ -114,6 +116,61 @@ namespace HospitalManagement
             }
 
         }
+        public static void DoSomethingWithPatient(int option)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("--------------Client Menu--------------");
+                var patient = PatientService.GetPatient(option);
+
+                Console.WriteLine("This is his treatment type"+ patient.Treatment.TreatmentType.ToString());
+                Console.WriteLine("This is his pills");
+                foreach (var pill in patient.Treatment.Pills)
+                {
+                    Console.WriteLine(pill.Name);
+                }
+
+                Console.WriteLine("Current stock");
+
+                Stock stock = Stock.GetStock();
+                Console.WriteLine(stock.ShowPillStock());
+
+                Console.WriteLine(" Which pill u want to add");
+
+                int option2 = Convert.ToInt32(Console.ReadLine());
+                var selectedPill = stock.Pills[option2];
+                //patient.Treatment.Pills.Add(selectedPill);
+                ITreatment itreat=new TreatmentModel();
+                switch(patient.Treatment.TreatmentType)
+                {
+                    case ETreatmentType.NONE:
+                        itreat = new FacileDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                        break;
+                    case ETreatmentType.FACILE:
+                        itreat = new SolvableDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                        break;
+                    case ETreatmentType.SOLVABLE:
+                        itreat = new MediumDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                        break;
+                    case ETreatmentType.MEDIUM:
+                        itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                        break;
+                    
+                    default: 
+                        itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                        break;
+
+                }
+               // int pacientId = PatientService.GetPatientIndex(option);
+                //PatientService.Patients[pacientId].Treatment = itreat;
+                
+                selectedPill.Quantity -= 1;
+
+                Console.ReadKey();
+            }
+
+        }
         public static void ClientMenu()
         {
             while (true)
@@ -159,9 +216,42 @@ namespace HospitalManagement
             string password = Console.ReadLine();
             if (doctorProxy.Login(username, password))
             {
-                Stock stock = Stock.GetStock();
-                Console.WriteLine(stock.ShowPillStock());
-            }
+                Console.Clear();
+                Console.WriteLine("--------------Doctor Menu--------------");
+                Console.WriteLine("1.Modify treatment");
+                Console.WriteLine("0.Back");
+
+
+                int op = Convert.ToInt32(Console.ReadLine());
+                switch (op)
+                {
+                    case 1:
+                        {
+
+                           
+                                Stock stock = Stock.GetStock();
+                                Console.WriteLine(stock.ShowPillStock());
+                                int index = 0;
+                                foreach (var patient in PatientService.Patients)
+                                {
+                                    Console.WriteLine(index + "." + patient);
+                                    index++;
+                                }
+                                Console.WriteLine("Choose a patient ");
+
+                                int option = Convert.ToInt32(Console.ReadLine());
+                                if (option == 0) break;
+                                DoSomethingWithPatient(option);
+                                break;
+
+
+
+                        }
+                    default:
+                        break;
+                }
+                }
+            
             else
             {
                 Console.WriteLine("The username or password is not correct");

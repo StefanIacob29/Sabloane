@@ -24,5 +24,12 @@ namespace HospitalManagement.Services
 
             return null;
         }
+        public int GetPatientIndex(int id)
+        {
+            for (int index = 0; index < Patients.Count; ++index)
+                if (Patients[index].Id == id)
+                    return index;
+            return -1;
+        }
     }
 }
