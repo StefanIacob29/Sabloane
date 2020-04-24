@@ -3,7 +3,7 @@ using HospitalManagement.Models;
 
 namespace HospitalManagement.Services
 {
-    class PatientService
+    internal class PatientService
     {
         public List<Patient> Patients { get; set; } = new List<Patient>();
 
@@ -16,14 +16,17 @@ namespace HospitalManagement.Services
 
         public Patient GetPatient(int id)
         {
-            foreach (var it in Patients)
+            foreach (var patient in Patients)
             {
-                if (it.Id == id)
-                    return it;
+                if (patient.Id == id)
+                {
+                    return patient;
+                }
             }
 
             return null;
         }
+
         public int GetPatientIndex(int id)
         {
             for (int index = 0; index < Patients.Count; ++index)
@@ -31,12 +34,15 @@ namespace HospitalManagement.Services
                     return index;
             return -1;
         }
+
         public float SumToPay(Patient patient)
 
         {
             float sum = 0;
             foreach (Pill pill in patient.Treatment.Pills)
+            {
                 sum += pill.Price;
+            }
             return sum;
         }
     }
