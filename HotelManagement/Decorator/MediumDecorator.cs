@@ -10,7 +10,7 @@ namespace HospitalManagement.Decorator
 
         public MediumDecorator(ITreatment treatment, string pillName, int price) : base(treatment)
         {
-            this.DecoratedTreatment.TreatmentType = ETreatmentType.SOLVABLE;
+            this.DecoratedTreatment.TreatmentType = ETreatmentType.MEDIUM;
             AddPill(pillName, price);
         }
         public override void AddPill(string pillName, int price)

@@ -52,7 +52,8 @@ namespace HospitalManagement.Services
             StringBuilder builder = new StringBuilder();
             for (int pill=0;pill<Pills.Count;pill++)
             {
-                builder.Append(pill.ToString()+". "+Pills[pill]+"\n");
+                
+                builder.Append((pill+1).ToString()+". "+Pills[pill]+"\n");
             }
 
             return builder.ToString();

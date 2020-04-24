@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using HospitalManagement.Decorator;
+using HospitalManagement.Flyweight;
 using HospitalManagement.Models;
 using HospitalManagement.Services;
 
@@ -9,6 +10,7 @@ namespace HospitalManagement
 {
     class Program
     {
+        private static Cashier cashier = new Cashier();
         private static DoctorProxy doctorProxy = new DoctorProxy();
         private static DepartamentService departamentService = new DepartamentService();
         private static DoctorService doctorService = new DoctorService();
@@ -108,6 +110,7 @@ namespace HospitalManagement
                     case 2:
                         {
                             Console.WriteLine("Pay");
+                            Pay(patient);
                             break;
                         }
                 }
@@ -115,6 +118,59 @@ namespace HospitalManagement
                     break;
             }
 
+        }
+        public static void Pay(Patient patient)
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("--------------Client Menu--------------");
+
+                Console.WriteLine("This is your treatment type" + patient.Treatment.TreatmentType.ToString());
+                Console.WriteLine("You have to pay");
+                float sumToPay = PatientService.SumToPay(patient);
+                Console.WriteLine(sumToPay);
+
+
+                if (patient.Budget < sumToPay)
+                    Console.WriteLine("you dont have enough money");
+                else
+                {
+                    Console.WriteLine("Hospital current mooney: " + cashier.GetTotalCash());
+
+                    Console.WriteLine("Choose your payment method");
+                    Console.WriteLine("1.Card");
+                    Console.WriteLine("2.Paper");
+                    Console.WriteLine("3.Coins");
+                    Console.WriteLine("0.Back");
+
+                    int option = Convert.ToInt32(Console.ReadLine());
+                    if (option == 0) break;
+                    switch (option)
+                    {
+                        case 1:
+                            cashier.CashIn(sumToPay, EMoneyType.Card);
+                            break;
+                        case 2:
+                            cashier.CashIn(sumToPay, EMoneyType.Paper);
+                            break;
+                        case 3:
+                            cashier.CashIn(sumToPay, EMoneyType.Coin);
+                            break;
+                        default:
+                            Console.WriteLine("Invalid");
+                            break;
+                    }
+                    patient.Budget -= sumToPay;
+                    Console.WriteLine("Pay succesful");
+                    patient.Treatment= new TreatmentModel();
+
+                    Console.WriteLine("Hospital current mooney: " + cashier.GetTotalCash());
+                    Console.WriteLine("Press any key to get back to your page");
+                    Console.ReadKey();
+                    break;
+                }
+            }
         }
         public static void DoSomethingWithPatient(int option)
         {
@@ -137,39 +193,42 @@ namespace HospitalManagement
                 Console.WriteLine(stock.ShowPillStock());
 
                 Console.WriteLine(" Which pill u want to add");
-                Console.WriteLine("Write -1 if u want to get out");
+                Console.WriteLine("Write 0 if u want to get out");
 
                 int option2 = Convert.ToInt32(Console.ReadLine());
-                if (option2 == -1) break;
-                var selectedPill = stock.Pills[option2];
-                //patient.Treatment.Pills.Add(selectedPill);
-                ITreatment itreat=new TreatmentModel();
-                switch(patient.Treatment.TreatmentType)
+                if (option2 == 0) break;
+                var selectedPill = stock.Pills[option2-1];
+                if (selectedPill.Quantity <= 0)
+                    Console.WriteLine("Sorry, out of stock");
+                else
                 {
-                    case ETreatmentType.NONE:
-                        itreat = new FacileDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
-                        break;
-                    case ETreatmentType.FACILE:
-                        itreat = new SolvableDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
-                        break;
-                    case ETreatmentType.SOLVABLE:
-                        itreat = new MediumDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
-                        break;
-                    case ETreatmentType.MEDIUM:
-                        itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
-                        break;
-                    
-                    default: 
-                        itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
-                        break;
+                    //patient.Treatment.Pills.Add(selectedPill);
+                    ITreatment itreat = new TreatmentModel();
+                    switch (patient.Treatment.TreatmentType)
+                    {
+                        case ETreatmentType.NONE:
+                            itreat = new FacileDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                            break;
+                        case ETreatmentType.FACILE:
+                            itreat = new SolvableDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                            break;
+                        case ETreatmentType.SOLVABLE:
+                            itreat = new MediumDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                            break;
+                        case ETreatmentType.MEDIUM:
+                            itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                            break;
 
+                        default:
+                            itreat = new RiskyDecorator(patient.Treatment, selectedPill.Name, (int)selectedPill.Price);
+                            break;
+
+                    }
+                    // int pacientId = PatientService.GetPatientIndex(option);
+                    //PatientService.Patients[pacientId].Treatment = itreat;
+
+                    selectedPill.Quantity -= 1;
                 }
-               // int pacientId = PatientService.GetPatientIndex(option);
-                //PatientService.Patients[pacientId].Treatment = itreat;
-                
-                selectedPill.Quantity -= 1;
-
-                Console.ReadKey();
             }
 
         }
@@ -233,8 +292,11 @@ namespace HospitalManagement
                            
                                 Stock stock = Stock.GetStock();
                                 Console.WriteLine(stock.ShowPillStock());
-                                int index = 0;
-                                foreach (var patient in PatientService.Patients)
+                                int index = 1;
+                                 Console.WriteLine();
+
+                            Console.WriteLine("Patients");
+                            foreach (var patient in PatientService.Patients)
                                 {
                                     Console.WriteLine(index + "." + patient);
                                     index++;

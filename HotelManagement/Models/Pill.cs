@@ -13,7 +13,7 @@
 
         public int Quantity { get; set; }
 
-        public double Price { get; set; }
+        public float Price { get; set; }
 
         public override bool Equals(object obj)
         {

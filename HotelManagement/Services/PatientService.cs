@@ -16,7 +16,7 @@ namespace HospitalManagement.Services
 
         public Patient GetPatient(int id)
         {
-            foreach(var it in Patients)
+            foreach (var it in Patients)
             {
                 if (it.Id == id)
                     return it;
@@ -30,6 +30,14 @@ namespace HospitalManagement.Services
                 if (Patients[index].Id == id)
                     return index;
             return -1;
+        }
+        public float SumToPay(Patient patient)
+
+        {
+            float sum = 0;
+            foreach (Pill pill in patient.Treatment.Pills)
+                sum += pill.Price;
+            return sum;
         }
     }
 }

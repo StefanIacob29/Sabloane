@@ -8,6 +8,8 @@ namespace HospitalManagement.Models
 
         public int Id { get; set; }
 
+        public float Budget { get; set; }
+
         public ITreatment Treatment { get; set; }
 
         public string Appointment { get; set; }
@@ -15,6 +17,7 @@ namespace HospitalManagement.Models
         public Patient(string name,int id)
         {
             this.Name = name;
+            this.Budget = 15000;
             this.Id = id;
             Treatment = new TreatmentModel();
         }
@@ -25,7 +28,7 @@ namespace HospitalManagement.Models
 
         public override string ToString()
         {
-            return $"{this.Id}{this.Name} ";
+            return $"{this.Name} ";
         }
 
     }
