@@ -352,6 +352,10 @@ namespace HospitalManagement
                             break;
                         }
                     }
+                    if (op == 0)
+                    {
+                        break;
+                    }
                 }
                 catch (Exception e)
                 {
@@ -370,44 +374,54 @@ namespace HospitalManagement
             string password = Console.ReadLine();
             if (doctorProxy.Login(username, password))
             {
-                Console.Clear();
-                Console.WriteLine("--------------Doctor Menu--------------");
-                Console.WriteLine("1.Modify treatment");
-                Console.WriteLine("0.Back");
-
-                string input = Console.ReadLine();
-                try
+                while (true)
                 {
-                    var op = Parse(input);
+                    Console.Clear();
+                    Console.WriteLine("--------------Doctor Menu--------------");
+                    Console.WriteLine("1.Modify treatment");
+                    Console.WriteLine("0.Back");
 
-                    switch (op)
+                    string input = Console.ReadLine();
+                    try
                     {
-                        case 1:
+                        var op = Parse(input);
+
+                        switch (op)
                         {
-                            Stock stock = Stock.GetStock();
-                            Console.WriteLine(stock.ShowPillStock());
-                            int index = 1;
-                            Console.WriteLine();
+                            case 1:
+                                {
+                                    Console.Clear();
+                                    Stock stock = Stock.GetStock();
+                                    Console.WriteLine(stock.ShowPillStock());
+                                    int index = 1;
+                                    Console.WriteLine();
 
-                            Console.WriteLine("Patients");
-                            foreach (var patient in PatientService.Patients)
-                            {
-                                Console.WriteLine(index + "." + patient);
-                                index++;
-                            }
+                                    Console.WriteLine("Patients");
+                                    foreach (var patient in PatientService.Patients)
+                                    {
+                                        Console.WriteLine(index + "." + patient);
+                                        index++;
+                                    }
 
-                            Console.WriteLine("Choose a patient ");
+                                    Console.WriteLine("Choose a patient ");
 
-                            int option = Convert.ToInt32(Console.ReadLine());
-                            if (option == 0) break;
-                            DoSomethingWithPatient(option);
+                                    int option = Convert.ToInt32(Console.ReadLine());
+                                    if (option == 0) break;
+                                    DoSomethingWithPatient(option);
+                                    break;
+                                }
+                        }
+                        if (op == 0)
+                        {
                             break;
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
             }
 

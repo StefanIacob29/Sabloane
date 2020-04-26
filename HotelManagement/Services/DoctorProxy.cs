@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace HospitalManagement.Services
 {
@@ -10,7 +11,7 @@ namespace HospitalManagement.Services
         {
             var user = _doctorService.Employees
                 .Select(employee => employee)
-                .FirstOrDefault(employee => employee.Name == username && employee.Password == password);
+                .FirstOrDefault(employee => String.Equals(employee.Name, username, StringComparison.InvariantCultureIgnoreCase)  && String.Equals(employee.Password, password, StringComparison.InvariantCultureIgnoreCase) );
 
             return user != null;
         }
