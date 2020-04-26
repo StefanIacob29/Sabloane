@@ -142,6 +142,9 @@ namespace HospitalManagement
             }
 
             int op2 = Convert.ToInt32(Console.ReadLine());
+
+            if (op2 > departments.Count || op2 < 1)
+                return;
             Console.Clear();
             DateTime now = DateTime.Now;
             string[] months =
@@ -157,6 +160,8 @@ namespace HospitalManagement
             }
 
             int op3 = Convert.ToInt32(Console.ReadLine());
+            if (op3 > 5 || op3 < 1)
+                return;
             Console.Clear();
             DateTime hour = new DateTime(2008, 4, 1, 9, 0, 0);
             for (int i = 1; i <= 13; i++)
@@ -166,30 +171,35 @@ namespace HospitalManagement
             }
 
             int op4 = Convert.ToInt32(Console.ReadLine());
-            now = DateTime.Now;
-            now = now.AddDays(op3);
-            hour = new DateTime(2008, 4, 1, 9, 0, 0);
-            hour = hour.AddMinutes(30 * (op4 - 1));
-            DateTime appoiment = new DateTime(now.Year, now.Month, now.Day, hour.Hour, hour.Minute, 0,
-                0);
-            Doctor doc = departamentService.makeAppointment(patient, appoiment,
-                doctorService.getDoctorByDepartment(departments[op2 - 1]));
-            if (doc != null)
-            {
-                observable.SetDate(appoiment, departments[op2 - 1]);
-                doctorService.updateDoctor(doc);
-                Console.Clear();
-                Console.WriteLine("Programarea a fost realizata");
-                Console.WriteLine("Press any key to continue");
-                Console.ReadLine();
-            }
+            if (op4 > 13|| op4<1)
+                Console.WriteLine("Invalid option");
             else
             {
-                Console.Clear();
-                Console.WriteLine(
-                    "Programarea nu a fost realizata, exista o programare la acea data si ora");
-                Console.WriteLine("Press any key to continue");
-                Console.ReadLine();
+                now = DateTime.Now;
+                now = now.AddDays(op3);
+                hour = new DateTime(2008, 4, 1, 9, 0, 0);
+                hour = hour.AddMinutes(30 * (op4 - 1));
+                DateTime appoiment = new DateTime(now.Year, now.Month, now.Day, hour.Hour, hour.Minute, 0,
+                    0);
+                Doctor doc = departamentService.makeAppointment(patient, appoiment,
+                    doctorService.getDoctorByDepartment(departments[op2 - 1]));
+                if (doc != null)
+                {
+                    observable.SetDate(appoiment, departments[op2 - 1]);
+                    doctorService.updateDoctor(doc);
+                    Console.Clear();
+                    Console.WriteLine("Programarea a fost realizata");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(
+                        "Programarea nu a fost realizata, exista o programare la acea data si ora");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadLine();
+                }
             }
         }
 
@@ -237,15 +247,17 @@ namespace HospitalManagement
                             Console.WriteLine("Invalid");
                             break;
                     }
+                    if (!(option != 1 && option != 2 && option != 3))
+                    {
+                        patient.Budget -= sumToPay;
+                        Console.WriteLine("Pay succesful");
+                        patient.Treatment = new TreatmentModel();
 
-                    patient.Budget -= sumToPay;
-                    Console.WriteLine("Pay succesful");
-                    patient.Treatment = new TreatmentModel();
-
-                    Console.WriteLine("Hospital current mooney: " + cashier.GetTotalCash());
-                    Console.WriteLine("Press any key to get back to your page");
-                    Console.ReadKey();
-                    break;
+                        Console.WriteLine("Hospital current mooney: " + cashier.GetTotalCash());
+                        Console.WriteLine("Press any key to get back to your page");
+                        Console.ReadKey();
+                        break;
+                    }
                 }
             }
         }
