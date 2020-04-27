@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HospitalManagement.Models;
+using HospitalManagement.Services.Interator;
 
 namespace HospitalManagement.Services
 {
@@ -13,25 +14,42 @@ namespace HospitalManagement.Services
             Patients.Add(new Patient(name, id));
             return id;
         }
-
         public Patient GetPatient(int id)
         {
-            foreach (var patient in Patients)
+            PatientIterator iterator = new PatientIterator(Patients);
+            for (Patient item = iterator.First();
+                !iterator.IsDone; item = iterator.Next())
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+           /* foreach (var patient in Patients)
             {
                 if (patient.Id == id)
                 {
                     return patient;
                 }
-            }
+            }*/
 
             return null;
         }
 
         public int GetPatientIndex(int id)
         {
-            for (int index = 0; index < Patients.Count; ++index)
+            PatientIterator iterator = new PatientIterator(Patients);
+            for (Patient item = iterator.First();
+                !iterator.IsDone; item = iterator.Next())
+            {
+                if (item.Id == id)
+                {
+                    return iterator.getCurrentIndex();
+                }
+            }
+           /* for (int index = 0; index < Patients.Count; ++index)
                 if (Patients[index].Id == id)
-                    return index;
+                    return index;*/
             return -1;
         }
 
